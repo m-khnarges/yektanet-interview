@@ -1,2 +1,2 @@
 # yektanet-interview
-The task for Yektanet second phase interview for front-end developer position
+The task of Yektanet second phase interview for front-end developer position
