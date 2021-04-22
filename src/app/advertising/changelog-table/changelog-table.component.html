@@ -1,0 +1,25 @@
+<div class="table-container">
+  <table>
+    <thead>
+    <tr>
+      <th>نام تغییردهنده</th>
+      <th>تاریخ</th>
+      <th>نام آگهی</th>
+      <th>فیلد</th>
+      <th>مقدار قدیمی</th>
+      <th>مقدار جدید</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let advertisement of advertisements; index as i">
+      <td>{{advertisement.name}}</td>
+      <td>{{advertisement.date}}</td>
+      <td>{{advertisement.title}}</td>
+      <td>{{advertisement.field}}</td>
+      <td>{{advertisement.old_value}}</td>
+      <td>{{advertisement.new_value}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-filter-form',
@@ -8,8 +9,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FilterFormComponent implements OnInit {
   filterForm: FormGroup;
+  @Output() applyFilter: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private location: Location) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -25,6 +27,6 @@ export class FilterFormComponent implements OnInit {
   }
 
   submit(): void {
-
+    this.applyFilter.emit();
   }
 }

@@ -1,0 +1,25 @@
+.table-container {
+  padding: var(--spacing-m) var(--spacing-s);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  height: var(--spacing-xl);
+  text-align: right;
+  padding: var(--spacing-xs);
+  border: 1px solid;
+}
+
+td {
+  border-color: var(--very-light-pink);
+}
+
+th {
+  border-color: var(--dark-mint-green);
+  background: var(--dark-mint-green);
+  color: var(--monocolor);
+}

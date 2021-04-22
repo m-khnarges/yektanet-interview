@@ -1,0 +1,29 @@
+.filter-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-column-gap: var(--spacing-xs);
+  grid-row-gap: var(--spacing-xs);
+  margin: var(--spacing-s);
+}
+
+.filter-form > * {
+  height: var(--spacing-xl);
+  border-radius: var(--spacing-xs);
+}
+
+.filter-form > input {
+  padding: var(--spacing-xs);
+  border: 1px solid var(--very-light-pink-two);
+}
+
+.filter-button {
+  cursor: pointer;
+  background: var(--dark-mint-green);
+  color: var(--monocolor);
+  border: 1px solid var(--dark-mint-green);
+}
+
+.filter-button.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

@@ -1,1 +1,9 @@
-<app-filter-form></app-filter-form>
+<h2>
+  تغییرات آگهی‌ها
+</h2>
+<app-filter-form
+  (applyFilter)="applyFilters()">
+</app-filter-form>
+<app-changelog-table
+  [advertisements]="viewingAds">
+</app-changelog-table>

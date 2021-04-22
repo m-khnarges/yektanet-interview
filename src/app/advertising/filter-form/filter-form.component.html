@@ -3,15 +3,27 @@
   (ngSubmit)="submit()"
   class="filter-form">
   <input
-    [formControlName]="'user'"
-    [type]="'text'"/>
-  <input
-    [formControlName]="'date'"
-    [type]="'date'"/>
-  <input
+    autofocus
+    [tabIndex]="1"
     [formControlName]="'name'"
     [type]="'text'"/>
   <input
+    [tabIndex]="2"
+    [formControlName]="'date'"
+    [type]="'date'"/>
+  <input
+    [tabIndex]="3"
+    [formControlName]="'title'"
+    [type]="'text'"/>
+  <input
+    [tabIndex]="3"
     [formControlName]="'field'"
     [type]="'text'"/>
+  <button
+    class="filter-button"
+    [ngClass]="{'disabled': filterForm.invalid}"
+    [type]="'submit'"
+    [disabled]="filterForm.invalid">
+    فیلتر
+  </button>
 </form>

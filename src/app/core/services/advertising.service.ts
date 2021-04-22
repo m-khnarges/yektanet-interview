@@ -10,6 +10,6 @@ export class AdvertisingService {
   constructor() { }
 
   getAdvertisementList(): Advertisement[] {
-    return data as Advertisement[];
+    return (data as any).default as Advertisement[];
   }
 }
