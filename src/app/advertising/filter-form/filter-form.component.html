@@ -1,22 +1,26 @@
 <form
   [formGroup]="filterForm"
   (ngSubmit)="submit()"
-  class="filter-form">
+  class="filter-form text-small">
   <input
     autofocus
     [tabIndex]="1"
+    [placeholder]="'نام تغییردهنده'"
     [formControlName]="'name'"
     [type]="'text'"/>
   <input
     [tabIndex]="2"
+    [placeholder]="'تاریخ'"
     [formControlName]="'date'"
     [type]="'date'"/>
   <input
     [tabIndex]="3"
+    [placeholder]="'نام آگهی'"
     [formControlName]="'title'"
     [type]="'text'"/>
   <input
     [tabIndex]="3"
+    [placeholder]="'فیلد'"
     [formControlName]="'field'"
     [type]="'text'"/>
   <button

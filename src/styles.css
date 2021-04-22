@@ -1,8 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-:root {
-  --text-darker: #1D1D1D;
-  --background-dark: #F8D9D1;
-}
 
 :root {
   --monocolor: #ffffff;
@@ -39,7 +35,7 @@
 * {
   overscroll-behavior-x: none;
   -webkit-overflow-scrolling: touch;
-  font-family: dana, sans-serif !important;
+  font-family: shabnam, sans-serif !important;
   outline: none !important;
 }
 
@@ -122,33 +118,5 @@ body {
 }
 
 .text-medium {
-  font-weight: 500;
-}
-
-.text-black-two {
-  color: var(--black-two);
-}
-
-.background-white {
-  background-color: var(--monocolor);
-}
-
-.text-black {
-  color: var(--black);
-}
-
-.text-darker {
-  color: var(--text-darker);
-}
-
-.text-greyish-brown {
-  color: var(--greyish-brown);
-}
-
-.text-brown-grey {
-  color: var(--brown-grey);
-}
-
-.text-gray-light {
-  color: var(--very-light-pink-two);
+  font-weight: bold;
 }

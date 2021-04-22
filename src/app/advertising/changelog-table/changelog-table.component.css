@@ -1,5 +1,6 @@
 .table-container {
-  padding: var(--spacing-m) var(--spacing-s);
+  margin: var(--spacing-s);
+  overflow-x: auto;
 }
 
 table {
@@ -22,4 +23,12 @@ th {
   border-color: var(--dark-mint-green);
   background: var(--dark-mint-green);
   color: var(--monocolor);
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr.starred {
+  background: var(--very-light-pink);
 }

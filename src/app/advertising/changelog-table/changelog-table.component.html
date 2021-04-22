@@ -1,7 +1,11 @@
 <div class="table-container">
+  <p class="text-xx-small">
+    با کلیک کردن بر روی سطر‌های جدول می‌توانید آن‌ها را ستاره‌دار کنید.
+  </p>
   <table>
-    <thead>
+    <thead class="text-medium text-small">
     <tr>
+      <th>ردیف</th>
       <th>نام تغییردهنده</th>
       <th>تاریخ</th>
       <th>نام آگهی</th>
@@ -10,8 +14,14 @@
       <th>مقدار جدید</th>
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let advertisement of advertisements; index as i">
+    <tbody class="text-x-small">
+    <tr
+      [ngClass]="{'starred': isRecordStarred(advertisement)}"
+      (click)="starRecord(advertisement)"
+      *ngFor="let advertisement of advertisements; index as i">
+      <td class="text-medium">
+        {{advertisement.id | persianNumber}}
+      </td>
       <td>{{advertisement.name}}</td>
       <td>{{advertisement.date}}</td>
       <td>{{advertisement.title}}</td>

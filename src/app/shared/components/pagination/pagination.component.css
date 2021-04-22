@@ -1,0 +1,19 @@
+.pagination-container {
+  margin: var(--spacing-m) var(--spacing-s) var(--spacing-s);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.current-page {
+  padding: 0 var(--spacing-xs);
+}
+
+.chevron {
+  cursor: pointer;
+}
+
+.chevron.disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}

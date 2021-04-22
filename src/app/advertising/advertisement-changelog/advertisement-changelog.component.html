@@ -4,6 +4,18 @@
 <app-filter-form
   (applyFilter)="applyFilters()">
 </app-filter-form>
+<app-pagination
+  (changePage)="changePage($event)"
+  [page]="page"
+  [size]="size"
+  [count]="advertisements.length">
+</app-pagination>
 <app-changelog-table
   [advertisements]="viewingAds">
 </app-changelog-table>
+<app-pagination
+  (changePage)="changePage($event)"
+  [page]="page"
+  [size]="size"
+  [count]="advertisements.length">
+</app-pagination>

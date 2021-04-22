@@ -27,10 +27,17 @@ export class AdvertisementChangelogComponent implements OnInit {
   }
 
   setViewingAds(): void {
-    this.viewingAds = this.advertisements.splice(this.page * this.size - 1, this.size);
+    const start: number = (this.page - 1) * this.size;
+    const end: number = (this.page) * this.size;
+    this.viewingAds = this.advertisements.slice(start, end);
   }
 
   applyFilters(): void {
 
+  }
+
+  changePage(newPage: number): void {
+    this.page = newPage;
+    this.setViewingAds();
   }
 }

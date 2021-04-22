@@ -1,0 +1,33 @@
+<div class="pagination-container">
+  <img
+    class="chevron"
+    [ngClass]="{'disabled': isFirstPage}"
+    (click)="first()"
+    src="assets/images/chevron-double-right.svg"
+    alt="previous">
+
+  <img
+    class="chevron"
+    [ngClass]="{'disabled': isFirstPage}"
+    (click)="previous()"
+    src="assets/images/chevron-right.svg"
+    alt="previous">
+
+  <span class="current-page">
+    {{page | persianNumber}}
+  </span>
+
+  <img
+    class="chevron"
+    [ngClass]="{'disabled': isLastPage}"
+    (click)="next()"
+    src="assets/images/chevron-left.svg"
+    alt="next">
+
+  <img
+    class="chevron"
+    [ngClass]="{'disabled': isLastPage}"
+    (click)="last()"
+    src="assets/images/chevron-double-left.svg"
+    alt="next">
+</div>
