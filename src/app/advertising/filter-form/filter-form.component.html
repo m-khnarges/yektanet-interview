@@ -3,7 +3,7 @@
   (ngSubmit)="submit()"
   class="filter-form text-small">
   <input
-    autofocus
+    [autofocus]="true"
     [tabIndex]="1"
     [placeholder]="'نام تغییردهنده'"
     [formControlName]="'name'"

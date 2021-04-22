@@ -27,6 +27,6 @@ export class FilterFormComponent implements OnInit {
   }
 
   submit(): void {
-    this.applyFilter.emit();
+    this.applyFilter.emit(this.filterForm.value);
   }
 }

@@ -32,7 +32,27 @@ export class AdvertisementChangelogComponent implements OnInit {
     this.viewingAds = this.advertisements.slice(start, end);
   }
 
-  applyFilters(): void {
+  applyFilters(filters: { name: string, date: string, title: string, field: string }): void {
+    type advertisementTypeKeys = keyof Advertisement;
+    type filtersTypeKeys = keyof typeof filters;
+
+    this.setAdvertisements();
+    for (const filtersKey of Object.keys(filters)) {
+      if (filters[filtersKey as filtersTypeKeys]) {
+        if (filtersKey !== 'date') {
+          this.advertisements = this.advertisements.filter(item => {
+            return filters[filtersKey as filtersTypeKeys] === item[filtersKey as advertisementTypeKeys];
+          });
+        } else {
+          this.filterByDate(filters[filtersKey as filtersTypeKeys]);
+        }
+      }
+    }
+
+    this.setViewingAds();
+  }
+
+  filterByDate(date: string): void {
 
   }
 
@@ -42,9 +62,9 @@ export class AdvertisementChangelogComponent implements OnInit {
   }
 
   sortTable(id: string): void {
-    type x = keyof Advertisement;
+    type advertisementTypeKeys = keyof Advertisement;
     this.advertisements.sort((a: Advertisement, b: Advertisement) => {
-      if (a[id as x] < b[id as x]) {
+      if (a[id as advertisementTypeKeys] < b[id as advertisementTypeKeys]) {
         return -1;
       } else {
         return 1;

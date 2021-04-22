@@ -20,6 +20,7 @@ th {
   background: var(--lipstick);
   color: var(--monocolor);
   cursor: pointer;
+  transition: all 0.5s;
 }
 
 th:hover {
@@ -33,6 +34,7 @@ td {
 
 .record {
   cursor: pointer;
+  transition: all 0.5s;
 }
 
 .record.starred, .record:hover {

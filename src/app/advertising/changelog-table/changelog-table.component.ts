@@ -34,7 +34,6 @@ export class ChangelogTableComponent implements OnInit {
   setStarredRecords(): void {
     const records = localStorage.getItem('starredRecords');
     this.starredRecords = records ? JSON.parse(records) : [];
-    console.log(this.starredRecords);
   }
 
   starRecord(item: Advertisement): void {
