@@ -36,9 +36,8 @@ export class AdvertisementChangelogComponent implements OnInit {
 
   setFilters(): void {
     this.route.queryParamMap.subscribe(params => {
-      this.applyFilters({name: '', date: '', title: '', field: ''});
       if (params.get('sort') !== null) {
-        this.sortTable(params.get('sort') || '');
+        this.sortTable(params.get('sort'));
       }
     });
   }
@@ -52,7 +51,7 @@ export class AdvertisementChangelogComponent implements OnInit {
       if (filtersValue) {
         this.filterAdvertisements(filtersKey, filtersValue);
       } else {
-        this.removeQueryParams(filtersKey);
+        this.addQueryParam(filtersKey, null);
       }
     }
 
@@ -63,17 +62,19 @@ export class AdvertisementChangelogComponent implements OnInit {
     type advertisementTypeKeys = keyof Advertisement;
     this.addQueryParam(filtersKey, filtersValue);
 
-    if (filtersKey !== 'date') {
-      this.advertisements = this.advertisements.filter(item => {
+    this.advertisements = this.advertisements.filter(item => {
+      if (filtersKey !== 'date') {
         return filtersValue === item[filtersKey as advertisementTypeKeys];
-      });
-    } else {
-      this.filterByDate(filtersValue);
-    }
+      } else {
+        return this.filterByDate(filtersValue, item);
+      }
+    });
   }
 
-  filterByDate(date: string): void {
-
+  filterByDate(date: string, advertisement: Advertisement): boolean {
+    // TODO: Convert to BST
+    const convertedDate: string = date.split('/').reverse().join('-');
+    return advertisement.date === convertedDate;
   }
 
   changePage(newPage: number): void {
@@ -99,10 +100,10 @@ export class AdvertisementChangelogComponent implements OnInit {
   addQueryParam(name: string, value: string): void {
     const queryParams: Params = {};
     queryParams[name] = value;
-    this.router.navigate([], {queryParams, queryParamsHandling: 'merge'}).then();
+    this.navigateToRoute(queryParams);
   }
 
-  removeQueryParams(name: string): void {
-
+  navigateToRoute(params: Params): void {
+    setTimeout(() => this.router.navigate([], {queryParams: params, queryParamsHandling: 'merge'}).then(), 0);
   }
 }

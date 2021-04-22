@@ -33,6 +33,8 @@ export class FilterFormComponent implements OnInit {
       this.filterForm.patchValue({date: params.get('date')});
       this.filterForm.patchValue({title: params.get('title')});
       this.filterForm.patchValue({field: params.get('field')});
+
+      this.submit();
     });
   }
 
