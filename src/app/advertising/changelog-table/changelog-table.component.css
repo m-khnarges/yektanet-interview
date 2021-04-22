@@ -15,20 +15,26 @@ th, td {
   border: 1px solid;
 }
 
+th {
+  border-color: var(--lipstick);
+  background: var(--lipstick);
+  color: var(--monocolor);
+  cursor: pointer;
+}
+
+th:hover {
+  border-color: var(--dark-lipstick);
+  background: var(--dark-lipstick);
+}
+
 td {
   border-color: var(--very-light-pink);
 }
 
-th {
-  border-color: var(--dark-mint-green);
-  background: var(--dark-mint-green);
-  color: var(--monocolor);
-}
-
-tr {
+.record {
   cursor: pointer;
 }
 
-tr.starred {
+.record.starred, .record:hover {
   background: var(--very-light-pink);
 }

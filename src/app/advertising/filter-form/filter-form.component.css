@@ -18,9 +18,9 @@
 
 .filter-button {
   cursor: pointer;
-  background: var(--dark-mint-green);
+  background: var(--lipstick);
   color: var(--monocolor);
-  border: 1px solid var(--dark-mint-green);
+  border: 1px solid var(--lipstick);
 }
 
 .filter-button.disabled {

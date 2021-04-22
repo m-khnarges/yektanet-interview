@@ -8,12 +8,26 @@ import {Advertisement} from '../../core/models/advertisement';
 })
 export class ChangelogTableComponent implements OnInit {
   @Input() advertisements: Advertisement[];
+  headers: { id: number, name: string }[];
   starredRecords: Advertisement[];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setHeaderNames();
     this.setStarredRecords();
+  }
+
+  setHeaderNames(): void {
+    this.headers = [
+      {id: 0, name: 'ردیف'},
+      {id: 1, name: 'نام تغییردهنده'},
+      {id: 2, name: 'تاریخ'},
+      {id: 3, name: 'نام آگهی'},
+      {id: 4, name: 'فیلد'},
+      {id: 5, name: 'مقدار قدیمی'},
+      {id: 6, name: 'مقدار جدید'},
+    ];
   }
 
   setStarredRecords(): void {
@@ -34,5 +48,9 @@ export class ChangelogTableComponent implements OnInit {
 
   isRecordStarred(item: Advertisement): boolean {
     return this.starredRecords.filter(record => item.id === record.id).length > 0;
+  }
+
+  sortBy(): void {
+
   }
 }
