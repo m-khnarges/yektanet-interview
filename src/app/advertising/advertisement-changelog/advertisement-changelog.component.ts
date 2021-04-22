@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Advertisement } from '../../core/models/advertisement';
 import { AdvertisingService } from '../../core/services/advertising.service';
 
@@ -13,13 +14,14 @@ export class AdvertisementChangelogComponent implements OnInit {
   page: number;
   size: number;
 
-  constructor(private advertisingService: AdvertisingService) { }
+  constructor(private advertisingService: AdvertisingService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.page = 1;
     this.size = 100;
     this.setAdvertisements();
     this.setViewingAds();
+    this.setFilters();
   }
 
   setAdvertisements(): void {
@@ -32,24 +34,42 @@ export class AdvertisementChangelogComponent implements OnInit {
     this.viewingAds = this.advertisements.slice(start, end);
   }
 
-  applyFilters(filters: { name: string, date: string, title: string, field: string }): void {
-    type advertisementTypeKeys = keyof Advertisement;
-    type filtersTypeKeys = keyof typeof filters;
+  setFilters(): void {
+    this.route.queryParamMap.subscribe(params => {
+      this.applyFilters({name: '', date: '', title: '', field: ''});
+      if (params.get('sort') !== null) {
+        this.sortTable(params.get('sort') || '');
+      }
+    });
+  }
 
+  applyFilters(filters: { name: string, date: string, title: string, field: string }): void {
+    type filtersTypeKeys = keyof typeof filters;
     this.setAdvertisements();
+
     for (const filtersKey of Object.keys(filters)) {
-      if (filters[filtersKey as filtersTypeKeys]) {
-        if (filtersKey !== 'date') {
-          this.advertisements = this.advertisements.filter(item => {
-            return filters[filtersKey as filtersTypeKeys] === item[filtersKey as advertisementTypeKeys];
-          });
-        } else {
-          this.filterByDate(filters[filtersKey as filtersTypeKeys]);
-        }
+      const filtersValue = filters[filtersKey as filtersTypeKeys];
+      if (filtersValue) {
+        this.filterAdvertisements(filtersKey, filtersValue);
+      } else {
+        this.removeQueryParams(filtersKey);
       }
     }
 
     this.setViewingAds();
+  }
+
+  filterAdvertisements(filtersKey: string, filtersValue: string): void {
+    type advertisementTypeKeys = keyof Advertisement;
+    this.addQueryParam(filtersKey, filtersValue);
+
+    if (filtersKey !== 'date') {
+      this.advertisements = this.advertisements.filter(item => {
+        return filtersValue === item[filtersKey as advertisementTypeKeys];
+      });
+    } else {
+      this.filterByDate(filtersValue);
+    }
   }
 
   filterByDate(date: string): void {
@@ -63,6 +83,8 @@ export class AdvertisementChangelogComponent implements OnInit {
 
   sortTable(id: string): void {
     type advertisementTypeKeys = keyof Advertisement;
+    this.addQueryParam('sort', id);
+
     this.advertisements.sort((a: Advertisement, b: Advertisement) => {
       if (a[id as advertisementTypeKeys] < b[id as advertisementTypeKeys]) {
         return -1;
@@ -72,5 +94,15 @@ export class AdvertisementChangelogComponent implements OnInit {
     });
 
     this.setViewingAds();
+  }
+
+  addQueryParam(name: string, value: string): void {
+    const queryParams: Params = {};
+    queryParams[name] = value;
+    this.router.navigate([], {queryParams, queryParamsHandling: 'merge'}).then();
+  }
+
+  removeQueryParams(name: string): void {
+
   }
 }
