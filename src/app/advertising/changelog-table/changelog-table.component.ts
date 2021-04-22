@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Advertisement} from '../../core/models/advertisement';
 
 @Component({
@@ -8,7 +8,8 @@ import {Advertisement} from '../../core/models/advertisement';
 })
 export class ChangelogTableComponent implements OnInit {
   @Input() advertisements: Advertisement[];
-  headers: { id: number, name: string }[];
+  @Output() sort: EventEmitter<string> = new EventEmitter<string>();
+  headers: { id: string, name: string }[];
   starredRecords: Advertisement[];
 
   constructor() { }
@@ -20,13 +21,13 @@ export class ChangelogTableComponent implements OnInit {
 
   setHeaderNames(): void {
     this.headers = [
-      {id: 0, name: 'ردیف'},
-      {id: 1, name: 'نام تغییردهنده'},
-      {id: 2, name: 'تاریخ'},
-      {id: 3, name: 'نام آگهی'},
-      {id: 4, name: 'فیلد'},
-      {id: 5, name: 'مقدار قدیمی'},
-      {id: 6, name: 'مقدار جدید'},
+      {id: 'id', name: 'ردیف'},
+      {id: 'name', name: 'نام تغییردهنده'},
+      {id: 'date', name: 'تاریخ'},
+      {id: 'title', name: 'نام آگهی'},
+      {id: 'field', name: 'فیلد'},
+      {id: 'old_value', name: 'مقدار قدیمی'},
+      {id: 'new_value', name: 'مقدار جدید'},
     ];
   }
 
@@ -50,7 +51,7 @@ export class ChangelogTableComponent implements OnInit {
     return this.starredRecords.filter(record => item.id === record.id).length > 0;
   }
 
-  sortBy(): void {
-
+  sortBy(id: string): void {
+    this.sort.emit(id);
   }
 }

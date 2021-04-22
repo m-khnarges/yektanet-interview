@@ -3,7 +3,7 @@
     <thead class="text-medium text-small">
     <tr>
       <th
-        (click)="sortBy()"
+        (click)="sortBy(header.id)"
         *ngFor="let header of headers">
         {{header.name}}
       </th>

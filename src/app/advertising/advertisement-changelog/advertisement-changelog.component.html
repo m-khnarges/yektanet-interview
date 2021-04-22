@@ -11,6 +11,7 @@
   [count]="advertisements.length">
 </app-pagination>
 <app-changelog-table
+  (sort)="sortTable($event)"
   [advertisements]="viewingAds">
 </app-changelog-table>
 <app-pagination

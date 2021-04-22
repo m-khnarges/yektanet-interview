@@ -40,4 +40,17 @@ export class AdvertisementChangelogComponent implements OnInit {
     this.page = newPage;
     this.setViewingAds();
   }
+
+  sortTable(id: string): void {
+    type x = keyof Advertisement;
+    this.advertisements.sort((a: Advertisement, b: Advertisement) => {
+      if (a[id as x] < b[id as x]) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    this.setViewingAds();
+  }
 }
