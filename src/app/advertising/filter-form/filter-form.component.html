@@ -1,0 +1,17 @@
+<form
+  [formGroup]="filterForm"
+  (ngSubmit)="submit()"
+  class="filter-form">
+  <input
+    [formControlName]="'user'"
+    [type]="'text'"/>
+  <input
+    [formControlName]="'date'"
+    [type]="'date'"/>
+  <input
+    [formControlName]="'name'"
+    [type]="'text'"/>
+  <input
+    [formControlName]="'field'"
+    [type]="'text'"/>
+</form>
